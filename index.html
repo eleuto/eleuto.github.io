@@ -23,16 +23,21 @@
             min-height: 100vh;
         }
         .hero-body {
-            background: linear-gradient(45deg, var(--color-4), var(--color-3));
+            background: linear-gradient(45deg, rgba(20, 30, 70, 0.7), rgba(65, 176, 110, 0.7));
             position: relative;
             overflow: hidden;
         }
         #polygon-canvas {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .content-wrapper {
+            position: relative;
             z-index: 1;
         }
         .hero-content {
@@ -48,17 +53,44 @@
         }
         .achievement {
             background: var(--color-2);
-            padding: 1rem;
+            padding: 1.5rem;
             margin: 0.5rem;
             border-radius: 10px;
             color: var(--text-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .achievement:hover {
+            transform: scale(1.05);
         }
         .product, .technology, .partnerships {
             background: var(--color-3);
-            padding: 1.5rem;
+            padding: 2rem;
             margin: 1rem 0;
             border-radius: 10px;
             color: var(--text-color-light);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .technology li, .partnerships li {
+            margin-bottom: 1rem;
+            list-style-type: none;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .technology li:before, .partnerships li:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            background-size: contain;
+            background-repeat: no-repeat;
         }
         .neon {
             animation: neon 1.5s ease-in-out infinite alternate;
@@ -71,92 +103,101 @@
                 text-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px var(--color-3), 0 0 17.5px var(--color-3), 0 0 20px var(--color-3), 0 0 25px var(--color-3), 0 0 37.5px var(--color-3);
             }
         }
+        @media screen and (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+            .achievement, .product, .technology, .partnerships {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <section class="hero is-fullheight">
-        <div class="hero-body">
-            <canvas id="polygon-canvas"></canvas>
-            <div class="container hero-content">
-                <h1 class="title has-text-centered neon">ELEUTO</h1>
-                <h2 class="subtitle has-text-centered">Communication Solutions for the Paralyzed</h2>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Achievements</h2>
-            <div class="columns is-multiline">
-                <div class="column is-one-third">
-                    <div class="achievement">HKSTP Co-Ideation - 100k</div>
-                </div>
-                <div class="column is-one-third">
-                    <div class="achievement">Chang Dang Social Entrepreneurship Competition - 60K</div>
-                </div>
-                <div class="column is-one-third">
-                    <div class="achievement">HKUST DreamBuilder - 20K</div>
-                </div>
-                <div class="column is-one-third">
-                    <div class="achievement">Lo Kwee Seong TechShip - 200K</div>
-                </div>
-                <div class="column is-one-third">
-                    <div class="achievement">TCU Values and Ventures Event - Top 7 Worldwide</div>
-                </div>
-                <div class="column is-one-third">
-                    <div class="achievement">Only Team from Asia in Texas Event</div>
+    <canvas id="polygon-canvas"></canvas>
+    <div class="content-wrapper">
+        <section class="hero is-fullheight">
+            <div class="hero-body">
+                <div class="container hero-content">
+                    <h1 class="title has-text-centered neon">ELEUTO</h1>
+                    <h2 class="subtitle has-text-centered">Communication Solutions for the Paralyzed</h2>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Our Products</h2>
-            <div class="columns">
-                <div class="column">
-                    <div class="product">
-                        <h3 class="title is-4">Communication App for Paralyzed Users</h3>
-                        <p>Focused on patients with ALS, Parkinsonism, Cerebral Palsy, etc.</p>
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Achievements</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-one-third-desktop is-half-tablet">
+                        <div class="achievement">HKSTP Co-Ideation<br>HKD 100,000</div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="product">
-                        <h3 class="title is-4">Communication App for Children with Autism</h3>
-                        <p>Enables communication using pictorial representations</p>
+                    <div class="column is-one-third-desktop is-half-tablet">
+                        <div class="achievement">Chang Dang Social Entrepreneurship Competition<br>HKD 60,000</div>
+                    </div>
+                    <div class="column is-one-third-desktop is-half-tablet">
+                        <div class="achievement">HKUST DreamBuilder<br>HKD 20,000</div>
+                    </div>
+                    <div class="column is-one-third-desktop is-half-tablet">
+                        <div class="achievement">Lo Kwee Seong TechShip<br>HKD 200,000</div>
+                    </div>
+                    <div class="column is-one-third-desktop is-half-tablet">
+                        <div class="achievement">TCU Values and Ventures Event<br>Top 7 Worldwide</div>
+                    </div>
+                    <div class="column is-one-third-desktop is-half-tablet">
+                        <div class="achievement">Only Team from Asia in Texas Event</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="technology">
-                <h2 class="title is-2 has-text-centered">Our Technology</h2>
-                <ul>
-                    <li>Response prediction engine using custom fine-tuned LLMs</li>
-                    <li>Multi-modal responses (text, images, audio)</li>
-                    <li>Eye-blink based input</li>
-                    <li>Support for facial movements and other muscle movements</li>
-                    <li>Knowledge Graph technology for open-ended conversations</li>
-                </ul>
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Our Products</h2>
+                <div class="columns">
+                    <div class="column">
+                        <div class="product">
+                            <h3 class="title is-4">Communication App for Paralyzed Users</h3>
+                            <p>Focused on patients with ALS, Parkinsonism, Cerebral Palsy, etc.</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="product">
+                            <h3 class="title is-4">Communication App for Children with Autism</h3>
+                            <p>Enables communication using pictorial representations</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="partnerships">
-                <h2 class="title is-2 has-text-centered">Partnerships</h2>
-                <ul>
-                    <li>Official MOU with HKNMDA (Hong Kong Neuro Muscular Disease Association)</li>
-                    <li>Industry partners in India and the USA</li>
-                    <li>Advisor: Prof Huamin Qu (for TechShip event)</li>
-                </ul>
+        <section class="section">
+            <div class="container">
+                <div class="technology">
+                    <h2 class="title is-2 has-text-centered">Our Technology</h2>
+                    <ul>
+                        <li>🧠 Response prediction engine using custom fine-tuned LLMs</li>
+                        <li>🎨 Multi-modal responses (text, images, audio)</li>
+                        <li>👁️ Eye-blink based input</li>
+                        <li>😊 Support for facial movements and other muscle movements</li>
+                        <li>📊 Knowledge Graph technology for open-ended conversations</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="partnerships">
+                    <h2 class="title is-2 has-text-centered">Partnerships</h2>
+                    <ul>
+                        <li>🏥 Official MOU with HKNMDA (Hong Kong Neuro Muscular Disease Association)</li>
+                        <li>🌏 Industry partners in India and the USA</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script>
         // Three.js polygon setup
@@ -165,7 +206,7 @@
         const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('polygon-canvas'), alpha: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const geometry = new THREE.IcosahedronGeometry(1, 0);
+        const geometry = new THREE.IcosahedronGeometry(3, 0);
         const material = new THREE.MeshBasicMaterial({color: 0x8DECB4, wireframe: true});
         const polygon = new THREE.Mesh(geometry, material);
         scene.add(polygon);
@@ -174,8 +215,17 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            polygon.rotation.x += 0.01;
-            polygon.rotation.y += 0.01;
+            polygon.rotation.x += 0.005;
+            polygon.rotation.y += 0.005;
+            
+            // Change color based on scroll position
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollFraction = scrollY / maxScroll;
+            const color = new THREE.Color();
+            color.setHSL(scrollFraction, 1, 0.5);
+            polygon.material.color = color;
+
             renderer.render(scene, camera);
         }
         animate();
@@ -187,7 +237,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Rest of the JavaScript
+        // Animations
         document.addEventListener('DOMContentLoaded', () => {
             // Animate title
             anime({
