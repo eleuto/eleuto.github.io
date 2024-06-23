@@ -84,7 +84,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             transition: transform 0.3s ease;
         }
@@ -94,6 +94,27 @@
         .tech-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+        }
+        .tech-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .tech-description {
+            font-size: 0.9rem;
+            height: 4.5em;
+            overflow: hidden;
+        }
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background-color: var(--text-color);
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
         .partnerships li {
             margin-bottom: 1rem;
@@ -201,31 +222,36 @@
                     <div class="column is-one-fifth-desktop is-one-third-tablet">
                         <div class="tech-item">
                             <div class="tech-icon">🧠</div>
-                            <p>Response Prediction Engine</p>
+                            <p class="tech-title">Response Prediction Engine</p>
+                            <p class="tech-description" data-full-text="Using custom fine-tuned LLMs"></p>
                         </div>
                     </div>
                     <div class="column is-one-fifth-desktop is-one-third-tablet">
                         <div class="tech-item">
                             <div class="tech-icon">🎨</div>
-                            <p>Multi-modal Responses</p>
+                            <p class="tech-title">Multi-modal Responses</p>
+                            <p class="tech-description" data-full-text="Text, images, and audio"></p>
                         </div>
                     </div>
                     <div class="column is-one-fifth-desktop is-one-third-tablet">
                         <div class="tech-item">
                             <div class="tech-icon">👁️</div>
-                            <p>Eye-blink Based Input</p>
+                            <p class="tech-title">Eye-blink Based Input</p>
+                            <p class="tech-description" data-full-text="Control through eye movements"></p>
                         </div>
                     </div>
                     <div class="column is-one-fifth-desktop is-one-third-tablet">
                         <div class="tech-item">
                             <div class="tech-icon">😊</div>
-                            <p>Facial Movement Support</p>
+                            <p class="tech-title">Facial Movement Support</p>
+                            <p class="tech-description" data-full-text="And other muscle movements"></p>
                         </div>
                     </div>
                     <div class="column is-one-fifth-desktop is-one-third-tablet">
                         <div class="tech-item">
                             <div class="tech-icon">📊</div>
-                            <p>Knowledge Graph Technology</p>
+                            <p class="tech-title">Knowledge Graph Technology</p>
+                            <p class="tech-description" data-full-text="For open-ended conversations"></p>
                         </div>
                     </div>
                 </div>
@@ -283,6 +309,36 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
+        // Typewriter effect for tech descriptions
+        function typeWriter(element, text, i, isDeleting, cb) {
+            const fullText = element.getAttribute('data-full-text');
+            let currentText = element.textContent;
+
+            if (isDeleting) {
+                currentText = fullText.substring(0, currentText.length - 1);
+            } else {
+                currentText = fullText.substring(0, currentText.length + 1);
+            }
+
+            element.textContent = currentText;
+            element.innerHTML += '<span class="cursor"></span>';
+
+            let delta = 200 - Math.random() * 100;
+
+            if (isDeleting) { delta /= 2; }
+
+            if (!isDeleting && currentText === fullText) {
+                delta = 1000;
+                setTimeout(() => typeWriter(element, text, i, true, cb), delta);
+            } else if (isDeleting && currentText === '') {
+                isDeleting = false;
+                delta = 500;
+                setTimeout(() => typeWriter(element, text, i, false, cb), delta);
+            } else {
+                setTimeout(() => typeWriter(element, text, i, isDeleting, cb), delta);
+            }
+        }
+
         // Animations
         document.addEventListener('DOMContentLoaded', () => {
             // Animate title
@@ -322,7 +378,14 @@
                 opacity: [0, 1],
                 easing: 'easeOutExpo',
                 duration: 1500,
-                delay: anime.stagger(100, {start: 2000})
+                delay: anime.stagger(100, {start: 2000}),
+                complete: function(anim) {
+                    document.querySelectorAll('.tech-description').forEach((desc, index) => {
+                        setTimeout(() => {
+                            typeWriter(desc, desc.getAttribute('data-full-text'), 0, false);
+                        }, index * 1000);
+                    });
+                }
             });
 
             // Animate partnerships section
