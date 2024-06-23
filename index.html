@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eleuto - Communication Solutions for the Paralyzed</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            --color-1: #FFF5E0;
+            --color-2: #8DECB4;
+            --color-3: #41B06E;
+            --color-4: #141E46;
+            --text-color: #141E46;
+            --text-color-light: #FFF5E0;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--color-1);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+        .hero-body {
+            background: linear-gradient(45deg, var(--color-4), var(--color-3));
+            position: relative;
+            overflow: hidden;
+        }
+        #polygon-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .title, .subtitle {
+            color: var(--text-color-light) !important;
+        }
+        .title {
+            font-size: 4rem;
+            text-shadow: 3px 3px var(--color-4);
+        }
+        .achievement {
+            background: var(--color-2);
+            padding: 1rem;
+            margin: 0.5rem;
+            border-radius: 10px;
+            color: var(--text-color);
+        }
+        .product, .technology, .partnerships {
+            background: var(--color-3);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            color: var(--text-color-light);
+        }
+        .neon {
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--color-2), 0 0 35px var(--color-2), 0 0 40px var(--color-2), 0 0 50px var(--color-2), 0 0 75px var(--color-2);
+            }
+            to {
+                text-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px var(--color-3), 0 0 17.5px var(--color-3), 0 0 20px var(--color-3), 0 0 25px var(--color-3), 0 0 37.5px var(--color-3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <canvas id="polygon-canvas"></canvas>
+            <div class="container hero-content">
+                <h1 class="title has-text-centered neon">ELEUTO</h1>
+                <h2 class="subtitle has-text-centered">Communication Solutions for the Paralyzed</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Achievements</h2>
+            <div class="columns is-multiline">
+                <div class="column is-one-third">
+                    <div class="achievement">HKSTP Co-Ideation - 100k</div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="achievement">Chang Dang Social Entrepreneurship Competition - 60K</div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="achievement">HKUST DreamBuilder - 20K</div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="achievement">Lo Kwee Seong TechShip - 200K</div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="achievement">TCU Values and Ventures Event - Top 7 Worldwide</div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="achievement">Only Team from Asia in Texas Event</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Our Products</h2>
+            <div class="columns">
+                <div class="column">
+                    <div class="product">
+                        <h3 class="title is-4">Communication App for Paralyzed Users</h3>
+                        <p>Focused on patients with ALS, Parkinsonism, Cerebral Palsy, etc.</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="product">
+                        <h3 class="title is-4">Communication App for Children with Autism</h3>
+                        <p>Enables communication using pictorial representations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="technology">
+                <h2 class="title is-2 has-text-centered">Our Technology</h2>
+                <ul>
+                    <li>Response prediction engine using custom fine-tuned LLMs</li>
+                    <li>Multi-modal responses (text, images, audio)</li>
+                    <li>Eye-blink based input</li>
+                    <li>Support for facial movements and other muscle movements</li>
+                    <li>Knowledge Graph technology for open-ended conversations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="partnerships">
+                <h2 class="title is-2 has-text-centered">Partnerships</h2>
+                <ul>
+                    <li>Official MOU with HKNMDA (Hong Kong Neuro Muscular Disease Association)</li>
+                    <li>Industry partners in India and the USA</li>
+                    <li>Advisor: Prof Huamin Qu (for TechShip event)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Three.js polygon setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('polygon-canvas'), alpha: true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.IcosahedronGeometry(1, 0);
+        const material = new THREE.MeshBasicMaterial({color: 0x8DECB4, wireframe: true});
+        const polygon = new THREE.Mesh(geometry, material);
+        scene.add(polygon);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            polygon.rotation.x += 0.01;
+            polygon.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Rest of the JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate title
+            anime({
+                targets: '.title',
+                translateY: [-50, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: 500
+            });
+
+            // Animate achievements
+            anime({
+                targets: '.achievement',
+                scale: [0.5, 1],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(100, {start: 1000})
+            });
+
+            // Animate products
+            anime({
+                targets: '.product',
+                translateX: [-50, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(300, {start: 1500})
+            });
+
+            // Animate technology and partnerships sections
+            anime({
+                targets: '.technology, .partnerships',
+                translateY: [50, 0],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(300, {start: 2000})
+            });
+        });
+    </script>
+</body>
+</html>
