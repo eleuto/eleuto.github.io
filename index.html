@@ -75,13 +75,33 @@
             color: var(--text-color-light);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .technology li, .partnerships li {
+        .tech-item {
+            background: var(--color-2);
+            color: var(--text-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .tech-item:hover {
+            transform: scale(1.05);
+        }
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .partnerships li {
             margin-bottom: 1rem;
             list-style-type: none;
             padding-left: 2rem;
             position: relative;
         }
-        .technology li:before, .partnerships li:before {
+        .partnerships li:before {
             content: '';
             position: absolute;
             left: 0;
@@ -107,8 +127,11 @@
             .title {
                 font-size: 3rem;
             }
-            .achievement, .product, .technology, .partnerships {
+            .achievement, .product, .technology, .partnerships, .tech-item {
                 padding: 1rem;
+            }
+            .tech-icon {
+                font-size: 2rem;
             }
         }
     </style>
@@ -173,15 +196,38 @@
 
         <section class="section">
             <div class="container">
-                <div class="technology">
-                    <h2 class="title is-2 has-text-centered">Our Technology</h2>
-                    <ul>
-                        <li>🧠 Response prediction engine using custom fine-tuned LLMs</li>
-                        <li>🎨 Multi-modal responses (text, images, audio)</li>
-                        <li>👁️ Eye-blink based input</li>
-                        <li>😊 Support for facial movements and other muscle movements</li>
-                        <li>📊 Knowledge Graph technology for open-ended conversations</li>
-                    </ul>
+                <h2 class="title is-2 has-text-centered" style="color: var(--text-color) !important;">Our Technology</h2>
+                <div class="columns is-multiline">
+                    <div class="column is-one-fifth-desktop is-one-third-tablet">
+                        <div class="tech-item">
+                            <div class="tech-icon">🧠</div>
+                            <p>Response Prediction Engine</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-fifth-desktop is-one-third-tablet">
+                        <div class="tech-item">
+                            <div class="tech-icon">🎨</div>
+                            <p>Multi-modal Responses</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-fifth-desktop is-one-third-tablet">
+                        <div class="tech-item">
+                            <div class="tech-icon">👁️</div>
+                            <p>Eye-blink Based Input</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-fifth-desktop is-one-third-tablet">
+                        <div class="tech-item">
+                            <div class="tech-icon">😊</div>
+                            <p>Facial Movement Support</p>
+                        </div>
+                    </div>
+                    <div class="column is-one-fifth-desktop is-one-third-tablet">
+                        <div class="tech-item">
+                            <div class="tech-icon">📊</div>
+                            <p>Knowledge Graph Technology</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -269,14 +315,24 @@
                 delay: anime.stagger(300, {start: 1500})
             });
 
-            // Animate technology and partnerships sections
+            // Animate technology items
             anime({
-                targets: '.technology, .partnerships',
+                targets: '.tech-item',
+                scale: [0.5, 1],
+                opacity: [0, 1],
+                easing: 'easeOutExpo',
+                duration: 1500,
+                delay: anime.stagger(100, {start: 2000})
+            });
+
+            // Animate partnerships section
+            anime({
+                targets: '.partnerships',
                 translateY: [50, 0],
                 opacity: [0, 1],
                 easing: 'easeOutExpo',
                 duration: 1500,
-                delay: anime.stagger(300, {start: 2000})
+                delay: 2500
             });
         });
     </script>
